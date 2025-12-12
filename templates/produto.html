@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lobster&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="Imagens/LogoListaCasamento.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='estilo_produto.css')}}">
+    <title>Lista de produtos: Casamento de Allana e Yuan</title>
+</head>
+
+<body>
+    <header>
+        <nav id="navegação_header">
+            <div id="SidebarLogo">
+                <button type="button" onclick="on_sidebar(event)">
+                    <img src="{{url_for('static', filename='Imagens/LogoListaCasamento.png')}}" id="logo">
+                    <img src="{{url_for('static', filename='Imagens/iconeSidebar.png')}}" id="sidebar-icon">
+                </button>
+            </div>
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+            <a href="{{url_for('login')}}" class="inscricao" id="inscricao">
+                <img src="{{url_for('static', filename='Imagens/Usuario.jpg')}}" alt="Usuario" id="usuario">
+            </a>
+        </nav>
+        
+        <nav id="navegação_header_sidebar">
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+        </nav>
+    </header>
+    
+    <main>        
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaNav">
+        {% for key, list_info in info_produto.items() %}
+            <section id="Main_principal">
+                <div class="produto" id="produtoEscolhido">
+                    <img src="{{url_for('static', filename=list_info.img)}}" alt="Imagem do produto">
+                </div>
+                <div class="produtoInformacao" id="produtoInformacao">
+                    <div class="titulos">
+                        <h1 class="titulo_section">Presente Selecionado</h1>
+                        <h2 class="titulo_produto">{{list_info.nome}}</h2>
+                    </div>
+                    <div class="Descricao">
+                        <div class="titulo_descricao">
+                            <h2>Descrição:</h2>
+                        </div>
+                        <div class="atributos">
+                            <div class="caracteristicas">
+                                <div class="cor">
+                                    <p>Cores - </p>
+                                    <br>
+                                    <form action="/produto/{{id}}" method="post" id="form-cor">
+                                        {% for cor in list_info.cores.split(',') %}
+                                            <input type="checkbox" name="cor_selecionada" value="{{ cor.strip() }}" id="{{ cor.strip() }}"  class="cor-checkbox" >
+                                        {% endfor %}
+                                    </form>
+                                </div>
+                                <div class="caracteristica">
+                                    <p>{{list_info.list_info[0]}}</p>
+                                </div>
+                            </div>
+                            {% for func in list_info.list_info[1:] %}
+                                <div class="funcao">
+                                    <p>{{func}}</p>
+                                </div>
+                            {% endfor %}
+                            <div class="funcao">
+                                <p>Quantidade: {{list_info.quantidade}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="Assinar">
+                        <div class="CanetaPena">
+                            <img src="{{url_for('static', filename='Imagens/CanetaPena.png')}}" alt="Caneta Pena">
+                        </div>
+                        <div class="assine">
+                            <form action="/produto/{{id}}" method="post" id="form-assinar">
+                                <input type="hidden" name="Assinar_func" value="Assinar_func">
+                                <button onClick="assinarProduto()" type="submit" id="envioDeAssinatura"><strong>Assine aqui</strong></button>
+                            </form>
+                            <p>Não consegue assinar? <br>Verifique se você já fez login</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaProdutos">      
+    </main>
+</body>
+<script>
+    const checkboxes = document.querySelectorAll('.cor-checkbox');
+
+    checkboxes.forEach(ch => {
+        ch.addEventListener('change', () => {
+            const selecionadas = document.querySelectorAll('.cor-checkbox:checked').length;
+
+            if (selecionadas > 2) {
+                ch.checked = false;
+                alert("Você só pode selecionar no máximo 2 cores.");
+            }
+        });
+    });
+
+    document.getElementById('envioDeAssinatura').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const selecionadas = document.querySelectorAll('.cor-checkbox:checked').length;
+
+        if (selecionadas < 1) {
+            alert("Você precisa selecionar pelo menos uma cor.");
+            return;
+        }
+
+        if (selecionadas > 2) {
+            alert("Você só pode escolher no máximo 2 cores.");
+            return;
+        }
+
+        const formCores = document.getElementById('form-cor');
+        const fdCores = new FormData(formCores);
+
+        const formAssinar = document.getElementById('form-assinar');
+        const fdAssinar = new FormData(formAssinar);
+
+        fdCores.forEach((value, key) => fdAssinar.append(key, value));
+
+        fetch(formAssinar.action, {
+            method: "POST",
+            body: fdAssinar
+        })
+        .then(res => res.text())
+        .then(() => {
+            alert("🎉 O produto foi assinado com sucesso!");
+            location.reload();
+        })
+        .catch(err => console.error("Erro:", err));
+    });
+
+    function on_sidebar(event) {
+        event.stopPropagation();
+        const sidebar = document.getElementById('navegação_header_sidebar');
+        sidebar.classList.toggle('open');
+    }
+</script>
+
+</html>

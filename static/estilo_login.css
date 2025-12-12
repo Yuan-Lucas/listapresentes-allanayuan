@@ -1,0 +1,256 @@
+* { 
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: auto;
+}
+
+header {
+    margin: 0px;   
+    height: 150px;
+    width: 100vw;
+    background-color: #00964e;
+    display: flexbox;
+    align-content: center;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:space-around;
+    align-items: center;
+}
+
+#sidebar-icon {
+    display: none;
+}
+
+#sidebar {
+    display: none;
+}
+
+.nav_principal {
+    color: #fff;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 200 bold;
+    font-size: 2rem;
+    text-transform:capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 45px 30px;
+}
+
+#logo {
+    width: 120px;
+    height: 120px;
+}
+
+#navegação_header_sidebar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 15rem;
+    background-color: #00964e;
+
+    position: absolute; 
+    top: 150px;
+    right: 0;
+    z-index: 999;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+/* ----------------------------------------------- */
+.SeparacaoSetor {
+    border: none;
+    width: 40%;
+    margin: 30px;
+}
+/* ----------------------------------------------- */
+
+main {
+    background-color: #e1d8f1;
+    height: auto;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo_section {
+    font-family:"Lobster", monospace, sans-serif;
+    font-style: normal;
+    text-transform:capitalize;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center; 
+    color: #f1af09;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: min(6rem, 7vw);
+}
+
+#Main_principal {
+    height: auto;
+    padding-bottom: 2.8rem;
+    width: 88%;
+    background-image: url('Imagens/ImagemCartoonCasal.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 1px solid #673ab7;
+    border-top: 10px solid #673ab7;
+    border-radius: 9px;
+}
+
+#Main_principal #section_inscricao {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;  
+    align-items:end;
+    justify-content: space-between;
+    width: 95%;
+    height: 45rem;
+}
+
+#Main_principal #section_inscricao h2 {
+    font-weight: 400;
+    font-size: min(3rem, 8vw);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+form input {
+    border-radius: 9px;
+    border: 3px solid #f6b141;
+    margin: 5px;
+    padding-left: min(2rem,5%);
+    width: min(40rem,100%);
+    height: 3.5rem;
+    font-size: min(31px,4.4vw);
+    text-align: justify;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+}
+
+form button {
+    border: 0;
+    margin: 3px;
+    border-radius: 9px;
+    color: #fff;
+    background-color: #f1af09;
+    text-align: center;
+    width: 40rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* -------- MEDIA QUERIES -------- */
+
+@media screen and (max-width: 1600px) {
+    #Main_principal {
+        background-image: url('Imagens/backgroundImageLavanda.jpg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    #Main_principal #section_inscricao {
+        width: 100%;
+        align-items:center;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .sep- {
+        display: none;
+    }
+
+    .titulo_section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #section_inscricao input {
+        width: 80vw;
+    }
+
+    .botao {
+        width: 100%;
+    }
+
+    #navegação_header #nav1,
+    #navegação_header #nav2,
+    #navegação_header #nav3,
+    #navegação_header #nav4,
+    #navegação_header #nav5 {
+        display: none;
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 65px;
+        margin-right: 5%;
+    }
+
+    #SidebarLogo button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 15rem;
+        background-color: #fff;
+        border: 2px solid #5f5f5f;
+        border-radius: 50rem;
+    }
+
+    #navegação_header_sidebar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 15rem;
+        background-color: #00964e;
+        position: sticky;
+        top: 6rem;
+        left: 18%;
+        z-index: 9999;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    #navegação_header_sidebar.open {
+        display: flex;
+    }
+
+    .produto {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    #navegação_header #sidebar {
+        display: block;
+        width: 25%;
+        margin-right: 5%;
+    }
+}

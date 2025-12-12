@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lobster&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="cImagens/LogoListaCasamento.png)}}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='estilo_lista.css')}}">
+    <title>Lista de produtos: Casamento de Allana e Yuan</title>
+</head>
+
+<body>
+    <header>
+        <nav id="navegação_header">
+            <div id="SidebarLogo">
+                <button type="button" onclick="on_sidebar(event)">
+                    <img src="{{url_for('static', filename='Imagens/LogoListaCasamento.png')}}" id="logo">
+                    <img src="{{url_for('static', filename='Imagens/iconeSidebar.png')}}" id="sidebar-icon">
+                </button>
+            </div>
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+            <a href="{{url_for('login')}}" class="inscricao" id="inscricao">
+                <img src="{{url_for('static', filename='Imagens/Usuario.jpg')}}" alt="Usuario" id="usuario">
+            </a>
+        </nav>
+
+        <nav id="navegação_header_sidebar">
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+        </nav>
+    </header>
+    
+    <main>        
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaNav">
+
+        <section id="Main_principal">
+            <div class="ImagemCartoonCasal" id="ImagemCartoonCasal">
+                <img src="{{url_for('static', filename='Imagens/ImagemCartoonCasal_semFundo.png')}}" alt="Yuan e Allana (Imagem)">
+            </div>
+            <div class="ManualConvidado" id="ManualConvidado">
+                <h1 class="titulo_section"><span>Minha Lista</span> <span  class="sep-">-</span> <span>Casamento Allana & Yuan</span></h1>
+                <strong><p>Para facilitar sua consulta aos itens escolhidos, reunimos aqui todos os 
+                    presentes que você escolheu e assinou. Assim, fica mais fácil revisar as 
+                    informações e acompanhar sua seleção.</p></strong>
+                <strong><p>Se não estiver visualizando os itens, verifique se você fez login e se já 
+                    selecionou algum presente. Qualquer dúvida, é só entrar em contato conosco!</p></strong>
+            </div>
+        </section>
+    
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaProdutos">
+
+        <Section id="PrincipalProdutos">
+            <div classe="titulos" id="titulos">
+                <h2 class="titulo_section" id="titulo_listaPresente">Presentes Assinados</h2>
+            </div>
+            <div id="Produtos" class="Produtos">
+                {% for key, list_info in info_produto.items() %}
+                    <article class="produto" id="produto1">
+                        <img src="{{url_for('static', filename=list_info.img)}}" alt="Imagem do produto" class="ImagemProdutos" id="Liquidificador{{key}}">
+                        
+                        <h3 class="NameProduct">{{list_info.nome}}</h3> 
+                        <div class="Descricao">
+                            <div class="titulo_descricao">
+                                <h3>Descrição:</h3>
+                            </div>
+                            <div class="atributos">
+                                <div class="caracteristicas">
+                                    <div class="cor">
+                                        <p>Cores - </p>
+                                        <br>
+                                        <form action="/produto/{{id}}" method="post" id="form-cor">
+                                            {% for cor in list_info.cores.split(',') %}
+                                                <input type="checkbox" name="cor_selecionada" value="{{ cor.strip() }}" id="{{ cor.strip() }}">
+                                            {% endfor %}
+                                        </form>
+                                    </div>
+                                    <div class="caracteristica">
+                                        <p>{{list_info.caracteristicas}}</p>
+                                    </div>
+                                </div>
+                                <div class="funcao">
+                                    <p>{{list_info.funcao}}</p>
+                                </div>
+                            </div>
+                        </div>   
+                    </article>
+                {% endfor %}
+            </div>
+        </Section>
+        <br>
+    </main>
+</body>
+
+<script>
+    function on_sidebar(event) {
+        event.stopPropagation();
+        const sidebar = document.getElementById('navegação_header_sidebar');
+        sidebar.classList.toggle('open');
+    }
+</script>
+    
+</html>
+        
+        
+        
+        
+        
+        
+        

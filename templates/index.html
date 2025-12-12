@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lobster&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="Imagens/LogoListaCasamento.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='estilo.css')}}">
+    <title>Lista de produtos: Casamento de Allana e Yuan</title>
+</head>
+
+<body>
+    <header>
+        <nav id="navegação_header">
+            <div id="SidebarLogo">
+                <button type="button" onclick="on_sidebar(event)">
+                    <img src="{{url_for('static', filename='Imagens/LogoListaCasamento.png')}}" id="logo">
+                    <img src="{{url_for('static', filename='Imagens/iconeSidebar.png')}}" id="sidebar-icon">
+                </button>
+            </div>
+            <a href="#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+            <a href="{{url_for('login')}}" class="inscricao" id="inscricao">
+                <img src="{{url_for('static', filename='Imagens/Usuario.jpg')}}" alt="Usuario" id="usuario">
+            </a>
+        </nav>
+
+        
+        <nav id="navegação_header_sidebar">
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+        </nav>
+
+    </header>
+    
+    <main>        
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaNav">
+
+        <section id="Main_principal">
+            <h1 class="titulo_section"><span>Lista de Presentes</span> <span  class="sep-">-</span> <span>Casamento Allana & Yuan</span></h1>
+            <div class="ListaPresentes" id="ListaPresentes">
+                <img src="{{url_for('static', filename='Imagens/ImagemCartoonCasal_semFundo.png')}}" alt="Imagem Cartoon do casal">
+                <div>
+                    <strong>
+                        <p>Antes de qualquer presente, queremos agradecer por todo o carinho, apoio e por cada gesto que nos acompanhou até aqui, não só neste momento, mas ao longo de toda a nossa história.</p><br>
+                        <p>Criamos este espaço com muito amor para quem quiser nos presentear, mas sem nenhuma obrigação. Se desejar e puder, fique à vontade para selecionar um ou mais itens da lista de presentes e assinar seu nome.</p><br>
+                        <p>O mais importante para nós é celebrar esse dia especial ao lado de quem fez parte da nossa caminhada.</p><br>
+                        <p>Ah, e não esqueça de confirmar sua presença, estamos contando os dias para viver esse momento com você!</p><br>
+                        <p id="text_agradecimento">Com carinho,<br>  
+                        Allana e Yuan</p>
+                    </strong>
+                </div>
+            </div>
+        </section>
+    
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaProdutos">
+        
+        <section id="Passo_Passo">
+            <h2 class="titulo_section">Saiba Como Escolher Um Presente</h2>
+            <img src="{{url_for('static', filename='Imagens/Passo_Passo_row.png')}}" alt="Passo a passo" id="img_passos_row">
+            <img src="{{url_for('static', filename='Imagens/Passo_Passo_column.png')}}" alt="Passo a passo" id="img_passos_column">
+            <div class="Text_passos">
+                <strong><p>
+                    Você pode escolher um ou mais itens da lista de presentes e acompanhá-los clicando em “Minha Lista”
+                    no menu principal. Os itens já selecionados por outros convidados aparecerão de forma opaca e sem a 
+                    pena para seleção e assinatura do nome. Qualquer dúvida, é só entrar em contato conosco! 
+                </p></strong>
+            </div>
+        </section>
+    
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaProdutos">
+
+
+        <section id="PrincipalProdutos">
+            <div class="titulo_section" id="titulo_listaPresente">
+                <h2>Lista de Presentes</h2>
+                <br>
+            </div>
+            
+            
+            <div id="Produtos">
+                {% for key, list_info in info_produto.items() %}
+                    <article class="produto {% if list_info[2] != 'Selecione aqui' %}indisponivel{% endif %}" id="produto-{{ key }}">
+                        <img src="{{url_for('static', filename=list_info[0])}}" alt="Imagem do produto" class="ImagemProdutos" id="Liquidificador1">
+                        <hr>
+                        <h3 class="NameProduct">{{list_info[1]}}</h3> 
+                        {% if list_info[2] == "Selecione aqui" %}
+                            <nav class="nav_produto">
+                                <a href="{{url_for('produto', id=key)}}" class="assinar" id="assinar_disponivel">{{list_info[2]}}</a>
+                            </nav>
+                        {% else %}
+                            <nav class="nav_produto">
+                                <p class="assinar" id="assinar_indisponivel">{{list_info[2]}}</p>
+                            </nav>
+                        {% endif %}   
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+
+<script>
+    function on_sidebar(event) {
+        event.stopPropagation();
+        const sidebar = document.getElementById('navegação_header_sidebar');
+        sidebar.classList.toggle('open');
+    }
+
+    function indisponivel() {
+        const ind = document.getElementById('')
+    }
+</script>
+
+</html>

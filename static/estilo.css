@@ -1,0 +1,424 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: auto;
+}
+
+header {
+    margin: 0px;
+    height: 150px;
+    width: auto;
+    background-color: #00964e;
+
+    display: flexbox;
+    align-content: center;
+
+    position: sticky;
+    top: 0;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav_principal {
+    color: #fff;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 200 bold;
+    font-size: 35px;
+
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+
+    padding: 45px 30px;
+}
+
+#sidebar-icon {
+    display: none;
+}
+
+#nav1 {
+    color: #f6b141;
+}
+
+#logo {
+    width: 120px;
+    height: 120px;
+}
+
+#navegação_header_sidebar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 15rem;
+    background-color: #00964e;
+
+    position: absolute; 
+    top: 150px; 
+    right: 0;
+    z-index: 999;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+/* ----------------------------------------------- */
+.SeparacaoSetor {
+    border: none;
+    width: 40%;
+    margin: 30px;
+}
+/* ----------------------------------------------- */
+
+main {
+    background-color: #e1d8f1;
+    height: auto;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo_section {
+    font-family: "Lobster", monospace, sans-serif;
+    font-style: normal;
+    text-transform: capitalize;
+
+    font-weight: 900;
+    text-decoration: none;
+    text-align: center;
+
+    color: #f1af09;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: clamp(3rem, 3rem + 1vw, 5rem);
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+#Main_principal {
+    height: auto;
+    width: 88%;
+
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    border: 1px solid #673ab7;
+    border-top: 10px solid #673ab7;
+    border-radius: 9px;
+}
+
+#Main_principal #ListaPresentes {
+    border-radius: 24px;
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Main_principal #ListaPresentes img {
+    width: 50%;
+    height: 80%;
+}
+
+#Main_principal #ListaPresentes div {
+    width: 50%;
+    background-color: rgba(255, 250, 250, 0.82);
+}
+
+#Main_principal #ListaPresentes div p {
+    text-align: justify;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(15px, 15px + 40%, 25px);
+
+    text-decoration: none;
+    color: #000;
+}
+
+#Main_principal #ListaPresentes div #text_agradecimento {
+    color: #000;
+}
+
+@media screen and (max-width: 1600px) {
+    #Main_principal #ListaPresentes div p {
+        font-size: clamp(15px, 15px + 2%, 20px);
+    }
+}
+
+#img_passos_column {
+    display: none;
+}
+
+#Passo_Passo {
+    padding: 5px;
+
+    height: auto;
+    width: 88%;
+
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    border: 1px solid #673ab7;
+    border-radius: 9px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Passo_Passo img {
+    margin: 15px;
+    margin-top: 30px;
+    width: 85%;
+}
+
+#Passo_Passo .Text_passos {
+    margin: 15px;
+    background-color: rgba(255, 250, 250, 0.4);
+
+    height: auto;
+    width: 85%;
+    border-radius: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Passo_Passo .Text_passos p {
+    text-align: justify;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: none;
+    color: #000;
+}
+
+@media screen and (max-width: 1600px) {
+    #Passo_Passo .Text_passos p {
+        font-size: clamp(15px, 15px + 2%, 20px);
+    }
+}
+
+#PrincipalProdutos {
+    width: 88%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#PrincipalProdutos #titulo_listaPresente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 7rem;
+    width: 100%;
+
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    border: 1px solid #673ab7;
+    border-radius: 9px;
+}
+
+#PrincipalProdutos #Produtos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    justify-items: center;
+}
+
+.produto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 40px;
+    margin: 9px;
+    margin-top: 5rem;
+
+    border: 1.5px solid #673ab7;
+
+    background-color: #fff;
+    height: 700px;
+    width: 452px;
+    border-radius: 15px;
+}
+
+.produto .ImagemProdutos {
+    height: 400px;
+    width: 400px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.produto hr {
+    border: none;
+    border: 2px solid #673ab7;
+    border-radius: 9px;
+    width: 20rem;
+}
+
+.produto h3 {
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+}
+
+.produto .nav_produto {
+    width: 19rem;
+    height: 5rem;
+    border: 2px solid #673ab7;
+    border-radius: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.produto .nav_produto .assinar {
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.produto.indisponivel {
+    background: #f0f0f0;
+    opacity: 0.6;
+    filter: grayscale(30%);
+    cursor: not-allowed;
+}
+
+.produto.indisponivel:hover {
+    transform: none;
+}
+
+
+
+/* ---------------------- RESPONSIVO ------------------------- */
+
+@media screen and (max-width: 1350px) {
+
+    #navegação_header #nav1,
+    #navegação_header #nav2,
+    #navegação_header #nav3,
+    #navegação_header #nav4,
+    #navegação_header #nav5 {
+        display: none;
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 65px;
+        margin-right: 5%;
+    }
+
+    #SidebarLogo button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 15rem;
+        background-color: #fff;
+        border: 2px solid #5f5f5f;
+        border-radius: 50rem;
+    }
+
+    #navegação_header_sidebar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 15rem;
+        background-color: #00964e;
+        position: sticky;
+        top: 6rem;
+        left: 18%;
+        z-index: 9999;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    #navegação_header_sidebar.open {
+        display: flex;
+    }
+
+    .sep- {
+        display: none;
+    }
+
+    h1 {
+        font-size: clamp(1.2rem, 1.2rem + 1vw, 2rem);
+    }
+
+    /* lista presentes */
+    #Main_principal #ListaPresentes {
+        justify-content: center;
+    }
+
+    #Main_principal #ListaPresentes img {
+        display: none;
+    }
+
+    #Main_principal #ListaPresentes div {
+        width: 70%;
+    }
+
+    #Main_principal #ListaPresentes div p {
+        font-size: 1rem;
+    }
+
+    /* passo a passo */
+    #Passo_Passo #img_passos_row {
+        display: none;
+    }
+
+    #Passo_Passo #img_passos_column {
+        display: block;
+        width: 150vw;
+    }
+
+    #Passo_Passo .Text_passos p {
+        font-size: 1.5rem;
+    }
+}
