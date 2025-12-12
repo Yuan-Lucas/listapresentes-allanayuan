@@ -4,6 +4,7 @@ click
 colorama 
 Flask 
 flask-login
+Flask-SQLAlchemy
 graphviz 
 gunicorn 
 itsdangerous 
@@ -19,4 +20,5 @@ reportlab
 six 
 tzdata 
 Werkzeug 
+
 
