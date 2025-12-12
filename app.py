@@ -140,16 +140,32 @@ def login():
             for nome in request.form.get('nomeSobrenome').split(' '):
                 if nome.strip() != "" and nome.strip() != " ":
                     nome_user += nome.strip().lower() + " "
+            nome_user = nome_user.strip()
             senha = Hash(request.form.get('senhaLogin'))        
-            try:
-                usuario = db.session.query(user).filter_by(nome_completo=nome_user, senha = senha).first()
-                login_user(usuario)
-                if not usuario:
-                    return render_template('login.html')
+            # try:
+            #     usuario = db.session.query(user).filter_by(nome_completo=nome_user, senha = senha).first()
+            #     login_user(usuario)
+            #     if not usuario:
+            #         return render_template('login.html')
                 
-                return redirect(url_for('index'))
-            except:
-                return "Login ou senha incorretos"
+            #     return redirect(url_for('index'))
+            # except:
+            #     return "Login ou senha incorretos"
+            # Não usar try/except aqui – queremos ver erros reais no console
+            usuario = db.session.query(user).filter_by(
+                nome_completo=nome_user,
+                senha=senha
+            ).first()
+            
+            # Primeiro verifica se achou
+            if not usuario:
+                flash("Login ou senha incorretos.")
+                return render_template('login.html')
+            
+            # Depois faz login
+            login_user(usuario)
+            
+            return redirect(url_for('index'))
 
     return render_template('login.html')
                
@@ -232,4 +248,5 @@ def logout():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
     app.run(debug=True , port=5000)
