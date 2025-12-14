@@ -73,7 +73,7 @@ button {
 /* ----------------------------------------------- */
 .SeparacaoSetor {
     border: none;
-    width: 40%;
+    width: 50%;
     margin: 30px;
 }
 /* ----------------------------------------------- */
@@ -99,6 +99,7 @@ main {
 }
 
 h1 {
+    margin-bottom: 1rem;
     font-size: min(6rem, 7vw);
 }
 
@@ -114,6 +115,7 @@ h1 {
     border-radius: 9px;
 }
 
+
 #Main_principal #section_inscricao {
     display: flex;
     flex-wrap: nowrap;
@@ -121,12 +123,20 @@ h1 {
     align-items:end;
     justify-content: space-between;
     width: 95%;
-    height: 45rem;
+    height: auto;
 }
 
 #Main_principal #section_inscricao h2 {
     font-weight: 400;
     font-size: min(3rem, 8vw);
+}
+
+#cadastro {
+    margin: 1rem;
+}
+
+#login {
+    margin: 1rem;
 }
 
 form {
@@ -166,18 +176,25 @@ form button {
     cursor: pointer;
 }
 
-/* -------- MEDIA QUERIES -------- */
-
 @media screen and (max-width: 1600px) {
     #Main_principal {
         background-image: url('Imagens/backgroundImageLavanda.jpg');
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
-
+    
     #Main_principal #section_inscricao {
         width: 100%;
         align-items:center;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    #Main_principal {
+        width: 88%;
+        
+        background-size: contain;
+        background-repeat: repeat-y;
     }
 }
 
@@ -190,15 +207,15 @@ form button {
         display: flex;
         flex-direction: column;
     }
-
+    
     #section_inscricao input {
         width: 80vw;
     }
-
+    
     .botao {
         width: 100%;
     }
-
+    
     #navegação_header #nav1,
     #navegação_header #nav2,
     #navegação_header #nav3,
@@ -206,7 +223,7 @@ form button {
     #navegação_header #nav5 {
         display: none;
     }
-
+    
     #sidebar-icon {
         display: block;
         width: 65px;
@@ -222,7 +239,7 @@ form button {
         border: 2px solid #5f5f5f;
         border-radius: 50rem;
     }
-
+    
     #navegação_header_sidebar {
         display: none;
         flex-direction: column;
@@ -237,14 +254,15 @@ form button {
         padding: 1rem;
         border-radius: 10px;
     }
-
+    
     #navegação_header_sidebar.open {
         display: flex;
     }
 
-    .produto {
-        width: 98%;
+    .nav_principal {
+        padding: 20px;
     }
+
 }
 
 @media screen and (max-width: 1050px) {
@@ -252,5 +270,62 @@ form button {
         display: block;
         width: 25%;
         margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    form button {
+        width: 85%;
+        height: 3.0rem;
+        font-size: min(3rem, 7vw)        
+    }
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        height: auto;
+        padding: 10px;
+
+        justify-content: space-between;
+    }
+
+    header #navegação_header #SidebarLogo button #logo {
+        width: 50%;       
+        height: auto; 
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 30%;
+        margin-right: 5%;
+    }
+
+    header #navegação_header #SidebarLogo {
+        width: 50px;
+    }
+    
+    header #navegação_header #SidebarLogo button {
+        width: 40vw;
+        height: auto;
+    }
+    
+    header #navegação_header_sidebar {
+        width: 50vw;
+        height: auto;
+    }
+
+    header #navegação_header_sidebar a {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    header #inscricao {
+        width: 20%;
+    }
+
+    header #inscricao img {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
     }
 }
