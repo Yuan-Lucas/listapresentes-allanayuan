@@ -103,88 +103,103 @@ h2, p {
     color: #000;
 }
 
-/* -------------------------------------------------- */
-/* MAIN PRINCIPAL */
-/* -------------------------------------------------- */
-
 #Main_principal {
-    width: 88%;
+    width: 90%;
+    
     padding: 20px;
-    background-image: url('Imagens/backgroundImageLavanda.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
     border: 1px solid #673ab7;
     border-top: 10px solid #673ab7;
     border-radius: 9px;
+    
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-evenly;
 }
 
-/* Imagem principal */
-#Main_principal #produtoEscolhido img {
-    width: 28vw;
-    height: auto;
-    margin: 30px;
+#titulo_section_phone {
+    display: none;
 }
 
-/* Bloco de informações */
-#Main_principal #produtoInformacao {
-    width: 50%;
-    padding: 40px;
+#produtoEscolhido {
+    width: 40%;
+}
+
+#produtoEscolhido img {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+#produtoInformacao {
+    width: 60%;
+    padding: 20px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    gap: 40px;
 }
 
-#Main_principal #produtoInformacao .titulos h1 {
+span {
+    display: inline-block;
+}
+
+.titulos h1 {
     text-align: center;
     font-size: clamp(2.5rem, 2.5rem + 1vw, 3.5rem);
 }
 
-#Main_principal #produtoInformacao .titulos h2 {
+.titulos h2 {
     text-align: center;
     font-size: clamp(2rem, 2rem + 1vw, 3rem);
-    margin-bottom: 5rem;
 }
 
-#Main_principal #produtoInformacao .Descricao {
+.Descricao {
+    width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-#Main_principal #produtoInformacao .Descricao .titulo_descricao h2 {
+.titulo_descricao {
+    margin-bottom: 1rem;
+}
+
+.Descricao .titulo_descricao h2 {
     text-align: center;
-    font-size: 3vw;
-    margin: 1rem;
+    font-size: clamp(2rem, 2rem + 1vw, 3rem);
 }
 
-/* Atributos */
-#Main_principal #produtoInformacao .Descricao .atributos {
+.Descricao .atributos {
     display: flex;
     flex-direction: column;
 }
 
-/* Bloco de características + cor */
-#Main_principal #produtoInformacao .Descricao .atributos .caracteristicas {
+.caracteristicas {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 3rem;
 }
 
-/* Bloco cor + form */
-#Main_principal #produtoInformacao .Descricao .atributos .caracteristicas .cor {
+.cor span {
+    display: block;
+}
+
+.cor, .cor > form {
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    margin-right: 4rem;
+    flex-wrap: nowrap;
 }
 
-/* Inputs de cor estilizados */
-#Main_principal #produtoInformacao .cor form > input {
+.cor form > input {
     margin: 1.5px;
     width: 30px;
     height: 30px;
@@ -193,7 +208,7 @@ h2, p {
     border-radius: 1rem;
 }
 
-#Main_principal #produtoInformacao .cor form > input:checked {
+.cor form > input:checked {
     border: 2px solid #673ab7;
 }
 
@@ -216,24 +231,10 @@ h2, p {
 #EstRendada { background-image: url(Imagens/EstRendada.jpg); }
 #Dourado { background-color: #d6ca18; }
 
-#Main_principal #produtoInformacao .Descricao .atributos .caracteristicas .caracteristica {
-    margin: 1rem;
-    margin-bottom: 2rem;
-    margin-right: 4rem;
-}
 
-#Main_principal #produtoInformacao .Descricao .atributos .funcao {
-    margin-bottom: 3rem;
-    margin-right: 4rem;
-}
-
-/* -------------------------------------------------- */
-/* ASSINAR */
-/* -------------------------------------------------- */
-
-#Main_principal #produtoInformacao .Assinar {
-    width: 100%;
-    border: 3px solid #000;
+#produtoInformacao .Assinar {
+    width: 50%;
+    border: 5px solid #000;
     border-radius: 9px;
     display: flex;
     flex-direction: row;
@@ -241,17 +242,21 @@ h2, p {
     justify-content: space-evenly;
 }
 
-#Main_principal #produtoInformacao .Assinar .CanetaPena img {
-    width: 100px;
+#produtoInformacao .Assinar {
+    width: 50%;
 }
 
-#Main_principal #produtoInformacao .Assinar .assine {
+#produtoInformacao .Assinar > img {
+    width: 3vw;
+}
+
+#produtoInformacao .Assinar .assine {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#Main_principal #produtoInformacao .Assinar .assine button {
+#produtoInformacao .Assinar .assine button {
     margin: 0.6rem;
     font-size: 2vw;
     font-family: "Courier Prime";
@@ -262,16 +267,12 @@ h2, p {
     border: 0;
 }
 
-#Main_principal #produtoInformacao .Assinar .assine p {
+#produtoInformacao #informativo_assinatura p {
     text-align: center;
+    font-size: min(2rem, 2vw);
 }
 
-/* -------------------------------------------------- */
-/* MEDIA QUERY */
-/* -------------------------------------------------- */
-
 @media screen and (max-width: 1350px) {
-
     #navegação_header #nav1,
     #navegação_header #nav2,
     #navegação_header #nav3,
@@ -279,13 +280,13 @@ h2, p {
     #navegação_header #nav5 {
         display: none;
     }
-
+    
     #sidebar-icon {
         display: block;
         width: 65px;
         margin-right: 5%;
     }
-
+    
     #SidebarLogo button {
         display: flex;
         justify-content: space-between;
@@ -295,7 +296,7 @@ h2, p {
         border: 2px solid #5f5f5f;
         border-radius: 50rem;
     }
-
+    
     #navegação_header_sidebar {
         display: none;
         flex-direction: column;
@@ -310,29 +311,155 @@ h2, p {
         padding: 1rem;
         border-radius: 10px;
     }
-
+    
     #navegação_header_sidebar.open {
         display: flex;
     }
 
+    .nav_principal {
+        padding: 20px;
+    }
+
     #Main_principal {
+        background-size: contain;
+        background-repeat: repeat-y;
+        
         flex-direction: column;
         align-items: center;
+        
+        gap: 10px;
     }
-
-    #produtoEscolhido img {
+    
+    .titulo_section {
         display: none;
+        text-align: center;
+        font-size: clamp(2.5rem, 2.5rem + 1vw, 3.5rem);
     }
-
-    #Main_principal #produtoInformacao .Assinar .CanetaPena img {
-        width: 8vw;
+    
+    #titulo_section_phone {
+        display: block;
     }
-
-    #Main_principal #produtoInformacao .Assinar .assine button {
+    
+    #produtoEscolhido {
+        width: 90%;
+    }
+    
+    #produtoEscolhido img {
+        width: 100%;
+    }
+    
+    #produtoInformacao {
+        width: 95%;
+    }
+    
+    #produtoInformacao .Assinar {
+        width: 60%;
+    }
+    
+    #produtoInformacao .Assinar img {
+        width: 7vw;
+    }
+    
+    #produtoInformacao .Assinar .assine button {
         font-size: 2rem;
     }
+    
+    #produtoInformacao .Assinar .assine p {
+        font-size: clamp(1rem, 1rem + 1vw, 2rem);;
+    }
+}
 
-    #Main_principal #produtoInformacao .Assinar .assine p {
-        font-size: min(15px, 2vw);
+@media screen and (max-width: 550px) {
+    header {
+        height: auto;
+        padding: 10px;
+
+        justify-content: space-between;
+    }
+
+    header #navegação_header #SidebarLogo button #logo {
+        width: 50%;       
+        height: auto; 
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 30%;
+        margin-right: 5%;
+    }
+
+    header #navegação_header #SidebarLogo {
+        width: 50px;
+    }
+    
+    header #navegação_header #SidebarLogo button {
+        width: 40vw;
+        height: auto;
+    }
+    
+    header #navegação_header_sidebar {
+        width: 50vw;
+        height: auto;
+    }
+
+    header #navegação_header_sidebar a {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    header #inscricao {
+        width: 20%;
+    }
+
+    header #inscricao img {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+    }
+
+    #Main_principal{
+        padding: 0;
+    }
+    
+    #produtoInformacao {
+        gap: 15px;
+        padding: 0;
+        padding-bottom: 30px;
+    }
+    
+    .titulos h2 {
+        font-size: clamp(1.5rem, 1.5rem + 1vw, 2.5rem);
+    }
+    
+    .Descricao {
+        width: 95%;
+        gap: 15px;
+    }
+    
+    .atributos {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .caracteristicas {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    #produtoInformacao .Assinar {
+        flex-direction: column;
+
+        padding: 5px;
+        width: 70%;
+    }
+    
+    #produtoInformacao .Assinar img {
+        width: 25%;
+    }
+
+    #produtoInformacao #informativo_assinatura p {
+        text-align: center;
+        font-size: 1rem;
     }
 }
