@@ -15,6 +15,9 @@ header {
     background-color: #00964e;
     display: flexbox;
     align-content: center;
+
+    position: sticky;
+    top: 0;
 }
 
 header nav {
@@ -132,6 +135,7 @@ h2 {
     display: flex;
     flex-flow: nowrap column;
     align-items: center;
+    align-self: start;
 }
 
 #Main_principal #ManualConvidado h1 {
@@ -139,8 +143,8 @@ h2 {
 }
 
 #Main_principal #ManualConvidado p {
-    margin: 20px;
-    margin-right: 2.8rem;
+    margin: 9px;
+    margin-right: 2.5rem;
     text-align: justify;
     font-family: "Courier Prime", monospace, sans-serif;
     font-style: normal;
@@ -149,6 +153,7 @@ h2 {
     text-decoration: none;
     color: #000;
 }
+
 
 #PrincipalProdutos {
     width: 88%;
@@ -174,51 +179,49 @@ h2 {
 
 .Produtos {
     width: 100%;
+    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     justify-items: center;
 }
 
-@media screen and (max-width: 1350px) {
-    .Produtos {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
 .produto {
+    width: 30rem;
+    height: 50rem;
+    
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: min(2rem, 4%);
+    
+    padding: 1%;
     margin-top: 5rem;
+    margin-right: 3rem;
     border: 1.5px solid #673ab7;
+    border-radius: 15px;
+    
     background-image: url('Imagens/backgroundImageLavanda.jpg');
     background-size: cover;
     background-repeat: repeat;
-    width: 45%;
-    height: 50rem;
-    border-radius: 15px;
 }
 
-.produto .ImagemProdutos {
-    height: 50%;
+.produto img {
+    width: 100%;
+    height: 30rem;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .produto h3 {
     font-family: "Courier Prime", monospace, sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 2rem;
     text-decoration: none;
     text-align: center;
     color: #000;
-    margin-top: 15px;
 }
 
 .produto .Descricao {
@@ -249,22 +252,27 @@ h2 {
     width: 100%;
 }
 
-.produto .Descricao .atributos .caracteristicas .cor {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    margin-right: 4rem;
+.cor span {
+    display: block;
 }
 
-.produto .Descricao .atributos .caracteristicas .cor form > input {
+.cor, .cor > form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.cor form > input {
     margin: 1.5px;
     width: 30px;
     height: 30px;
     appearance: none;
     border: 1.5px solid #000;
     border-radius: 1rem;
+}
+
+.cor form > input:checked {
+    border: 2px solid #673ab7;
 }
 
 #Preto { background-color: #000; margin-left: 4px; }
@@ -307,19 +315,6 @@ h2 {
     font-size: clamp(1.5rem, 1.5rem + 2%, 2rem);
 }
 
-/* --- media produto --- */
-@media screen and (max-width: 1350px) {
-    .produto {
-        width: 100%;
-    }
-}
-
-footer {
-    background-color: #fff;
-    height: 38rem;
-    width: auto;
-}
-
 @media screen and (max-width: 1800px) {
     #ImagemCartoonCasal {
         display: none;
@@ -330,12 +325,12 @@ footer {
     .sep- {
         display: none;
     }
-
+    
     .titulo_section {
         display: flex;
         flex-direction: column;
     }
-
+    
     #navegação_header #nav1,
     #navegação_header #nav2,
     #navegação_header #nav3,
@@ -343,13 +338,13 @@ footer {
     #navegação_header #nav5 {
         display: none;
     }
-
+    
     #sidebar-icon {
         display: block;
         width: 65px;
         margin-right: 5%;
     }
-
+    
     #SidebarLogo button {
         display: flex;
         justify-content: space-between;
@@ -359,7 +354,7 @@ footer {
         border: 2px solid #5f5f5f;
         border-radius: 50rem;
     }
-
+    
     #navegação_header_sidebar {
         display: none;
         flex-direction: column;
@@ -374,13 +369,44 @@ footer {
         padding: 1rem;
         border-radius: 10px;
     }
-
+    
     #navegação_header_sidebar.open {
         display: flex;
     }
 
+    .nav_principal {
+        padding: 20px;
+    }
+    
+    #Main_principal {
+        background-size: contain;
+        background-repeat: repeat-y;
+        
+        flex-direction: column;
+        align-items: center;
+        
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .Produtos {
+        justify-content: space-between;
+        gap: 1rem;
+    }
+}
+@media screen and (max-width: 1220px) {
+    .Produtos {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
     .produto {
-        width: 98%;
+        margin: 40px 0 0 0;
+        padding: 0;
+        
+        height: auto;
+        gap: 30px;
     }
 }
 
@@ -390,7 +416,7 @@ footer {
         width: 25%;
         margin-right: 5%;
     }
-
+    
     #navegação_header_sidebar {
         left: 15%;
     }
@@ -400,4 +426,132 @@ footer {
     #titulo_listaPresente {
         font-size: clamp(3rem, 5rem - 20vw, 5rem);
     }
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        height: auto;
+        padding: 10px;
+
+        justify-content: space-between;
+    }
+
+    header #navegação_header #SidebarLogo button #logo {
+        width: 50%;       
+        height: auto; 
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 30%;
+        margin-right: 5%;
+    }
+
+    header #navegação_header #SidebarLogo {
+        width: 50px;
+    }
+    
+    header #navegação_header #SidebarLogo button {
+        width: 40vw;
+        height: auto;
+    }
+    
+    header #navegação_header_sidebar {
+        width: 50vw;
+        height: auto;
+    }
+
+    header #navegação_header_sidebar a {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    header #inscricao {
+        width: 20%;
+    }
+
+    header #inscricao img {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+    }
+
+    #Main_principal{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #Main_principal #ManualConvidado {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    
+    #Main_principal #ManualConvidado h1 {
+        font-size: min(3rem, 13vw);
+    }
+    
+    #Main_principal #ManualConvidado p {
+        margin: 0;
+        margin: 10px;
+        font-size: 1rem;
+    }
+
+    #PrincipalProdutos #titulos h2 {
+        font-size: min(3rem, 13vw);
+    }
+
+    .produto {
+        width: 80vw;
+        height: min(auto, 15px);
+        
+        margin: 10px;
+        margin-top: 1.5rem;
+        
+        gap: 15px;
+    }
+    
+    .produto img {
+        width: 80%;
+        height: 10rem;
+    }
+    
+    .produto h3 {
+        font-size: min(2rem, 7vw);
+    }
+
+    .produto .Descricao {
+        height: auto;
+        align-items: center;
+    }
+    
+    .produto .Descricao .titulo_descricao {
+        width: 60vw;
+        height: auto;
+
+        margin-bottom: 15px;
+    }
+    
+    .produto .Descricao .titulo_descricao h3 {
+        font-size: min(2rem, 7vw);
+    }
+    
+    .produto .Descricao .atributos {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .produto .Descricao .atributos .caracteristicas {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .produto .Descricao .atributos .caracteristicas .caracteristica p {
+        text-align: center;
+    }
+
+    
 }
