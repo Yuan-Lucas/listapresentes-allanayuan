@@ -35,11 +35,9 @@ header nav {
     font-style: normal;
     font-weight: 200 bold;
     font-size: 35px;
-
     text-transform: capitalize;
     text-decoration: none;
     text-align: center;
-
     padding: 45px 30px;
 }
 
@@ -66,7 +64,7 @@ header nav {
     background-color: #00964e;
 
     position: absolute; 
-    top: 150px; 
+    top: 150px;
     right: 0;
     z-index: 999;
 }
@@ -75,10 +73,11 @@ button {
     background-color: transparent;
     border: 0;
 }
+
 /* ----------------------------------------------- */
 .SeparacaoSetor {
     border: none;
-    width: 40%;
+    width: 50%;
     margin: 30px;
 }
 /* ----------------------------------------------- */
@@ -114,9 +113,18 @@ h2 {
     font-size: 4rem;
 }
 
+@media screen and (max-width: 1350px) {
+    h1 {
+        font-size: min(3rem,13vw)
+    }
+    span {
+        display: inline-block;
+    }
+}
+
 #Main_principal {
     height: auto;
-    width: 88%;
+    width: 95%;
 
     background-image: url('Imagens/backgroundImageLavanda.jpg');
     background-size: 100% 100%;
@@ -127,10 +135,20 @@ h2 {
     border-radius: 9px;
 }
 
+@media screen and (max-width: 1350px) {
+    #Main_principal {
+        width: 95%;
+
+        background-size: contain;
+        background-repeat: repeat-y;
+    }
+}
+
 #Main_principal #ListaPresentes {
-    border-radius: 24px;
     height: auto;
     width: 100%;
+    
+    border-radius: 24px;
 
     display: flex;
     flex-direction: row;
@@ -145,6 +163,7 @@ h2 {
 
 #Main_principal #ListaPresentes div {
     width: 50%;
+    margin-right: 2.5rem;
     background-color: rgba(255, 250, 250, 0.82);
 }
 
@@ -160,6 +179,7 @@ h2 {
 }
 
 #Main_principal #ListaPresentes div #text_agradecimento {
+    text-align: end;
     color: #000;
 }
 
@@ -177,7 +197,7 @@ h2 {
     padding: 5px;
 
     height: auto;
-    width: 88%;
+    width: 95%;
 
     background-image: url('Imagens/backgroundImageLavanda.jpg');
     background-size: 100% 100%;
@@ -193,10 +213,23 @@ h2 {
     align-items: center;
 }
 
+@media screen and (max-width: 1350px) {
+    #Passo_Passo {
+        width: 95%;
+
+        background-size: contain;
+        background-repeat: repeat-y;
+    }
+
+    #Passo_Passo h2 {
+        font-size: min(3rem,13vw);
+    }
+}
+
 #Passo_Passo img {
-    margin: 15px;
-    margin-top: 30px;
+    margin: 10px;
     width: 85%;
+    height: auto;
 }
 
 #Passo_Passo .Text_passos {
@@ -229,7 +262,7 @@ h2 {
 }
 
 #PrincipalProdutos {
-    width: 88%;
+    width: 95%;
 
     display: flex;
     flex-wrap: wrap;
@@ -242,7 +275,7 @@ h2 {
     justify-content: center;
     align-items: center;
 
-    height: 7rem;
+    height: auto;
     width: 100%;
 
     background-image: url('Imagens/backgroundImageLavanda.jpg');
@@ -262,6 +295,11 @@ h2 {
 }
 
 .produto {
+    height: 700px;
+    width: 452px;
+    
+    background-color: #fff;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -271,12 +309,8 @@ h2 {
     margin: 9px;
     margin-top: 5rem;
 
-    border: 1.5px solid #673ab7;
-
-    background-color: #fff;
-    height: 700px;
-    width: 452px;
     border-radius: 15px;
+    border: 1.5px solid #673ab7;
 }
 
 .produto .ImagemProdutos {
@@ -308,7 +342,7 @@ h2 {
     height: 5rem;
     border: 2px solid #673ab7;
     border-radius: 24px;
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -323,6 +357,73 @@ h2 {
     text-decoration: none;
 }
 
+@media screen and (max-width: 1350px) {
+    .produto {
+        width: 400px;
+        height: auto;
+
+        gap: 40px;
+    }
+    
+    .produto .ImagemProdutos {
+        height: 300px;
+        width: 300px;
+    }
+    
+    .produto hr {
+        width: 85%;
+        border: 3px solid #673ab7;
+    }
+    
+    .produto h3 {
+        font-size: min(2rem, 40vw);
+    }
+    
+    .produto .nav_produto {
+        width: 85%;
+        height: 5rem;
+        border: 3px solid #673ab7;
+    }
+    
+    .produto .nav_produto .assinar {
+        font-size: min(2rem, 40vw);
+    }
+}
+
+@media screen and (max-width: 880px) {
+    #PrincipalProdutos #titulo_listaPresente h2 {
+        font-size: min(3rem, 10vw);
+    }
+
+    .produto {
+        width: 80vw;
+        height: auto;
+
+        margin: 10px;
+        margin-top: 1.5rem;
+
+        gap: 40px;
+    }
+    
+    .produto .ImagemProdutos {
+        width: 80%;
+        height: auto;
+    }
+    
+    .produto h3 {
+        font-size: min(2rem, 7vw);
+    }
+    
+    .produto .nav_produto {
+        width: 60vw;
+        height: auto;
+    }
+    
+    .produto .nav_produto .assinar {
+        font-size: min(2rem, 7vw);
+    }
+}
+
 .produto.indisponivel {
     background: #f0f0f0;
     opacity: 0.6;
@@ -335,11 +436,7 @@ h2 {
 }
 
 
-
-/* ---------------------- RESPONSIVO ------------------------- */
-
 @media screen and (max-width: 1350px) {
-
     #navegação_header #nav1,
     #navegação_header #nav2,
     #navegação_header #nav3,
@@ -347,13 +444,13 @@ h2 {
     #navegação_header #nav5 {
         display: none;
     }
-
+    
     #sidebar-icon {
         display: block;
         width: 65px;
         margin-right: 5%;
     }
-
+    
     #SidebarLogo button {
         display: flex;
         justify-content: space-between;
@@ -363,62 +460,124 @@ h2 {
         border: 2px solid #5f5f5f;
         border-radius: 50rem;
     }
-
+    
     #navegação_header_sidebar {
+        width: 15rem;
+        height: auto;
+
         display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        width: 15rem;
+
         background-color: #00964e;
+        
         position: sticky;
         top: 6rem;
-        left: 18%;
-        z-index: 9999;
+        left: 7%;
+        
         padding: 1rem;
         border-radius: 10px;
+        
+        z-index: 9999;
     }
-
+    
     #navegação_header_sidebar.open {
         display: flex;
+    }
+    
+    .nav_principal {
+        padding: 20px;
     }
 
     .sep- {
         display: none;
     }
-
+    
     h1 {
-        font-size: clamp(1.2rem, 1.2rem + 1vw, 2rem);
+        font-size: min(3rem, 13vw);
     }
-
-    /* lista presentes */
+    
     #Main_principal #ListaPresentes {
+        flex-direction: column;
         justify-content: center;
     }
-
+    
     #Main_principal #ListaPresentes img {
-        display: none;
+        margin-bottom: 0.5rem;
+        width: 75%;
     }
-
+    
     #Main_principal #ListaPresentes div {
-        width: 70%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 90%;
     }
-
+    
     #Main_principal #ListaPresentes div p {
         font-size: 1rem;
     }
-
-    /* passo a passo */
+    
     #Passo_Passo #img_passos_row {
         display: none;
     }
-
+    
     #Passo_Passo #img_passos_column {
-        display: block;
-        width: 150vw;
+        display: flex;
+        width: 450%;
+        height: auto;
     }
-
+    
     #Passo_Passo .Text_passos p {
         font-size: 1.5rem;
     }
 }
+
+@media screen and (max-width: 550px) {
+    header {
+        height: auto;
+        padding: 10px;
+
+        justify-content: space-between;
+    }
+
+    header #navegação_header #SidebarLogo button #logo {
+        width: 50%;       
+        height: auto; 
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 30%;
+        margin-right: 5%;
+    }
+
+    header #navegação_header #SidebarLogo {
+        width: 50px;
+    }
+    
+    header #navegação_header #SidebarLogo button {
+        width: 40vw;
+        height: auto;
+    }
+    
+    header #navegação_header_sidebar {
+        width: 50vw;
+        height: auto;
+    }
+
+    header #navegação_header_sidebar a {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    header #inscricao {
+        width: 20%;
+    }
+
+    header #inscricao img {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+    }
+} 
