@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lobster&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="Imagens/LogoListaCasamento.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='estilo_login.css')}}">
+    <title>Lista de produtos: Casamento de Allana e Yuan</title>
+</head>
+
+<body>
+    <header>
+        <nav id="navegação_header">
+            <div id="SidebarLogo">
+                <button type="button" onclick="on_sidebar(event)">
+                    <img src="{{url_for('static', filename='Imagens/LogoListaCasamento.png')}}" id="logo">
+                    <img src="{{url_for('static', filename='Imagens/iconeSidebar.png')}}" id="sidebar-icon">
+                </button>
+            </div>
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+            <a href="{{url_for('login')}}" class="inscricao" id="inscricao">
+                <img src="{{url_for('static', filename='Imagens/Usuario_Selecionado.jpg')}}" alt="Usuario" id="usuario">
+            </a>
+        </nav>
+
+        <nav id="navegação_header_sidebar">
+            <a href="{{url_for('index')}}#Main_principal" class="nav_principal" id="nav1"><strong>Inicio</strong></a>
+            <a href="{{url_for('index')}}#PrincipalProdutos" class="nav_principal" id="nav2"><strong>presentes</strong></a>
+            <a href="{{url_for('lista')}}" class="nav_principal" id="nav3"><strong>Minha Lista</strong></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScTrqGxIXzhjjmEwVohj4JPk2oVI8usU6HQpZvKFiIvFrlvNg/viewform?usp=sharing&ouid=102149957380584088023" class="nav_principal" id="nav4"><strong>Confirmar Presença</strong></a>
+            <a href="https://drive.google.com/file/d/18IQd0QKMT-EI2CbqRfumyO6ygH7X7QWO/view?usp=drivesdk" class="nav_principal" id="nav5"><strong>Manual do Convidado</strong></a>
+        </nav>
+    </header>
+    
+    <main>        
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaNav">
+
+        <section id="Main_principal">
+            <h1 class="titulo_section"><span>Lista de Presentes</span> <span class="sep-">-</span> <span>Casamento Allana & Yuan</span></h1>
+            <div class="section_inscricao" id="section_inscricao">
+                <div id="cadastro">
+                    <h2 class="titulo_section">Cadastre-se</h2>
+                    <form action="/login" method="post">
+                        <input type="text" name="nome" placeholder="Seu Nome (Obrigatório)" required> 
+                        <input type="text" name="sobrenome" placeholder="Seu Sobrenome (Obrigatório)" required> 
+                        <input type="text" name="numero" placeholder="Seu Whatsapp (Obrigatório)" required> 
+                        <input type="email" name="email" placeholder="Seu E-mail (Opcional)"> 
+                        <input type="password" name="senhaCadastro" placeholder="Crie uma senha para login" required> 
+                        <input type="hidden" name="form_id" value="cadastroAtv">
+                        <button type="submit" class="botao" name="btn-cadastro">
+                            Finalizar Cadastro
+                        </button>
+                    </form>
+                </div>
+
+                <div id="login" class="titulo_section">
+                    <h2 class="titulo_section">Já tem um cadastro?</h2>
+                    <form action="/login" method="post">
+                        <input type="text" name="nomeSobrenome" placeholder="Nome Sobrenome" required> 
+                        <input type="password" name="senhaLogin" placeholder="Senha" required> 
+                        <input type="hidden" name="form_id" value="loginAtv">
+                        <input type="hidden" name="next" value="{{ request.args.get('next') }}">
+                        <button type="submit" class="botao" name="btn-login">
+                            Fazer Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    
+        <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaProdutos">
+        
+    </main>
+
+
+</body>
+
+<script>
+    function on_sidebar(event) {
+        event.stopPropagation();
+        const sidebar = document.getElementById('navegação_header_sidebar');
+        sidebar.classList.toggle('open');
+    }
+    </script>
+
+</html>

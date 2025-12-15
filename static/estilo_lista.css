@@ -1,0 +1,557 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: auto;
+}
+
+header {
+    margin: 0px;
+    height: 150px;
+    width: auto;
+    background-color: #00964e;
+    display: flexbox;
+    align-content: center;
+
+    position: sticky;
+    top: 0;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav_principal {
+    color: #fff;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 200 bold;
+    font-size: 35px;
+    text-transform: capitalize;
+    text-decoration: none;
+    text-align: center;
+    padding: 45px 30px;
+}
+
+#sidebar-icon {
+    display: none;
+}
+
+#logo {
+    width: 120px;
+    height: 120px;
+}
+
+#nav3 {
+    color: #f6b141;
+}
+
+#navegação_header_sidebar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 15rem;
+    background-color: #00964e;
+
+    position: absolute; 
+    top: 150px;
+    right: 0;
+    z-index: 999;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+/* ----------------------------------------------- */
+.SeparacaoSetor {
+    border: none;
+    width: 40%;
+    margin: 30px;
+}
+/* ----------------------------------------------- */
+
+main {
+    background-color: #e1d8f1;
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo_section {
+    font-family: "Lobster", monospace, sans-serif;
+    font-style: normal;
+    text-transform: capitalize;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    color: #f1af09;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: clamp(3rem, 3rem + 1vw, 5rem);
+}
+
+h2 {
+    font-size: min(4rem, 7vw);
+}
+
+#Main_principal {
+    height: auto;
+    width: 88%;
+    padding-bottom: 0;
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 1px solid #673ab7;
+    border-top: 10px solid #673ab7;
+    border-radius: 9px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: end;
+}
+
+#Main_principal #ImagemCartoonCasal img {
+    width: max(30vw, 50rem);
+    height: auto;
+}
+
+#Main_principal #ManualConvidado {
+    display: flex;
+    flex-flow: nowrap column;
+    align-items: center;
+    align-self: start;
+}
+
+#Main_principal #ManualConvidado h1 {
+    margin: 20px;
+}
+
+#Main_principal #ManualConvidado p {
+    margin: 9px;
+    margin-right: 2.5rem;
+    text-align: justify;
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(15px, 15px + 98%, 1.9rem);
+    text-decoration: none;
+    color: #000;
+}
+
+
+#PrincipalProdutos {
+    width: 88%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#PrincipalProdutos #titulos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8rem;
+    width: 100%;
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    border: 1px solid #673ab7;
+    border-radius: 9px;
+}
+
+.Produtos {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    justify-items: center;
+}
+
+.produto {
+    width: 30rem;
+    height: 50rem;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    padding: 1%;
+    margin-top: 5rem;
+    margin-right: 3rem;
+    border: 1.5px solid #673ab7;
+    border-radius: 15px;
+    
+    background-image: url('Imagens/backgroundImageLavanda.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+.produto img {
+    width: 100%;
+    height: 30rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: contain;
+}
+
+.produto h3 {
+    font-family: "Courier Prime", monospace, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+}
+
+.produto .Descricao {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+}
+
+.produto .Descricao .titulo_descricao h3 {
+    text-align: center;
+    font-size: clamp(1.5rem, 1.5rem + 2%, 2.5rem);
+    margin-top: 2rem;
+}
+
+.produto .Descricao .atributos {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    text-align: start;
+    align-items: center;
+}
+
+.produto .Descricao .atributos .caracteristicas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.cor span {
+    display: block;
+}
+
+.cor, .cor > form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.cor form > input {
+    margin: 1.5px;
+    width: 30px;
+    height: 30px;
+    appearance: none;
+    border: 1.5px solid #000;
+    border-radius: 1rem;
+}
+
+.cor form > input:checked {
+    border: 2px solid #673ab7;
+}
+
+#Preto { background-color: #000; margin-left: 4px; }
+#Branco { background-color: #fff; }
+#Cinza { background-color: #d3d3d3; }
+#Vermelho { background-color: #ff0000; }
+#Bege { background-color: #f5f5dc; }
+#Vinho { background-color: #722F37; }
+#AzulEscuro { background-color: #000877; }
+#VerdeEscuro { background-color: #256600; }
+#Azul { background-color: #0400ff; }
+#Roxo { background-color: #800080; }
+#CinzaEscuro { background-color: #414141; }
+#Madeira { background-color: #d3d3d3; }
+#Transparente { background-color: transparent; }
+#EstNatalina { background-image: url(Imagens/EstNatalina.jpg); }
+#EstDiversa { background-image: url(Imagens/EstDiversa.jpg); }
+#EstRendada { background-image: url(Imagens/EstRendada.jpg); }
+#Dourado { background-color: #d6ca18; }
+
+.produto .Descricao .atributos .caracteristicas .cor form > input:checked {
+    border: 2px solid #673ab7;
+}
+
+.produto .Descricao .atributos .caracteristicas .caracteristica {
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.produto .Descricao .atributos .caracteristicas .caracteristica p {
+    font-size: clamp(1.5rem, 1.5rem + 2%, 2rem);
+}
+
+.produto .Descricao .atributos .funcao {
+    margin-bottom: 1%;
+    width: 80%;
+}
+
+.produto .Descricao .atributos .funcao p {
+    font-size: clamp(1.5rem, 1.5rem + 2%, 2rem);
+}
+
+@media screen and (max-width: 1800px) {
+    #ImagemCartoonCasal {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .sep- {
+        display: none;
+    }
+    
+    .titulo_section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #navegação_header #nav1,
+    #navegação_header #nav2,
+    #navegação_header #nav3,
+    #navegação_header #nav4,
+    #navegação_header #nav5 {
+        display: none;
+    }
+    
+    #sidebar-icon {
+        display: block;
+        width: 65px;
+        margin-right: 5%;
+    }
+    
+    #SidebarLogo button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 15rem;
+        background-color: #fff;
+        border: 2px solid #5f5f5f;
+        border-radius: 50rem;
+    }
+    
+    #navegação_header_sidebar {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 15rem;
+        background-color: #00964e;
+        position: sticky;
+        top: 6rem;
+        left: 18%;
+        z-index: 9999;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    #navegação_header_sidebar.open {
+        display: flex;
+    }
+
+    .nav_principal {
+        padding: 20px;
+    }
+    
+    #Main_principal {
+        background-size: contain;
+        background-repeat: repeat-y;
+        
+        flex-direction: column;
+        align-items: center;
+        
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .Produtos {
+        justify-content: space-between;
+        gap: 1rem;
+    }
+}
+@media screen and (max-width: 1220px) {
+    .Produtos {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .produto {
+        margin: 40px 0 0 0;
+        padding: 0;
+        
+        height: auto;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    #navegação_header #sidebar-icon {
+        display: block;
+        width: 25%;
+        margin-right: 5%;
+    }
+    
+    #navegação_header_sidebar {
+        left: 15%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #titulo_listaPresente {
+        font-size: clamp(3rem, 5rem - 20vw, 5rem);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        height: auto;
+        padding: 10px;
+
+        justify-content: space-between;
+    }
+
+    header #navegação_header #SidebarLogo button #logo {
+        width: 50%;       
+        height: auto; 
+    }
+
+    #sidebar-icon {
+        display: block;
+        width: 30%;
+        margin-right: 5%;
+    }
+
+    header #navegação_header #SidebarLogo {
+        width: 50px;
+    }
+    
+    header #navegação_header #SidebarLogo button {
+        width: 40vw;
+        height: auto;
+    }
+    
+    header #navegação_header_sidebar {
+        width: 50vw;
+        height: auto;
+    }
+
+    header #navegação_header_sidebar a {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    header #inscricao {
+        width: 20%;
+    }
+
+    header #inscricao img {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+    }
+
+    #Main_principal{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #Main_principal #ManualConvidado {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    
+    #Main_principal #ManualConvidado h1 {
+        font-size: min(3rem, 13vw);
+    }
+    
+    #Main_principal #ManualConvidado p {
+        margin: 0;
+        margin: 10px;
+        font-size: 1rem;
+    }
+
+    #PrincipalProdutos #titulos h2 {
+        font-size: min(3rem, 13vw);
+    }
+
+    .produto {
+        width: 80vw;
+        height: min(auto, 15px);
+        
+        margin: 10px;
+        margin-top: 1.5rem;
+        
+        gap: 15px;
+    }
+    
+    .produto img {
+        width: 80%;
+        height: 10rem;
+    }
+    
+    .produto h3 {
+        font-size: min(2rem, 7vw);
+    }
+
+    .produto .Descricao {
+        height: auto;
+        align-items: center;
+    }
+    
+    .produto .Descricao .titulo_descricao {
+        width: 60vw;
+        height: auto;
+
+        margin-bottom: 15px;
+    }
+    
+    .produto .Descricao .titulo_descricao h3 {
+        font-size: min(2rem, 7vw);
+    }
+    
+    .produto .Descricao .atributos {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .produto .Descricao .atributos .caracteristicas {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .produto .Descricao .atributos .caracteristicas .caracteristica p {
+        text-align: center;
+    }
+
+    
+}
