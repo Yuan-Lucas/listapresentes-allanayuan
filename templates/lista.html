@@ -71,8 +71,8 @@
             </div>
             <div id="Produtos" class="Produtos">
                 {% for key, list_info in info_produto.items() %}
-                    <article class="produto" id="produto1">
-                        <img src="{{url_for('static', filename=list_info.img)}}" alt="Imagem do produto" class="ImagemProdutos" id="Liquidificador{{key}}">
+                    <article class="produto" id="produto-{{key}}">
+                        <img src="{{url_for('static', filename=list_info.img)}}" alt="Imagem do produto" class="ImagemProdutos" id="img-produto-{{key}}">
                         
                         <h3 class="NameProduct">{{list_info.nome}}</h3> 
                         <div class="Descricao">
@@ -82,7 +82,7 @@
                             <div class="atributos">
                                 <div class="caracteristicas">
                                     <div class="cor">
-                                        <p>Cores - </p>
+                                        <p><span>Cores- </span></p>
                                         <br>
                                         <form action="/produto/{{id}}" method="post" id="form-cor">
                                             {% for cor in list_info.cores.split(',') %}
