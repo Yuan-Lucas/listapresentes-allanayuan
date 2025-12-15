@@ -51,6 +51,7 @@
         <img src="{{url_for('static', filename='Imagens/Division.jpg')}}" alt="Divisória do site" class="SeparacaoSetor" id="LinhaNav">
         {% for key, list_info in info_produto.items() %}
             <section id="Main_principal">
+                <h1 class="titulo_section" id="titulo_section_phone" >Presente Selecionado</h1>
                 <div class="produto" id="produtoEscolhido">
                     <img src="{{url_for('static', filename=list_info.img)}}" alt="Imagem do produto">
                 </div>
@@ -66,7 +67,7 @@
                         <div class="atributos">
                             <div class="caracteristicas">
                                 <div class="cor">
-                                    <p>Cores - </p>
+                                    <p><span>Cores- </span></p>
                                     <br>
                                     <form action="/produto/{{id}}" method="post" id="form-cor">
                                         {% for cor in list_info.cores.split(',') %}
@@ -90,16 +91,16 @@
                     </div>
                     <br>
                     <div class="Assinar">
-                        <div class="CanetaPena">
-                            <img src="{{url_for('static', filename='Imagens/CanetaPena.png')}}" alt="Caneta Pena">
-                        </div>
+                        <img src="{{url_for('static', filename='Imagens/CanetaPena.png')}}" alt="Caneta Pena">
                         <div class="assine">
                             <form action="/produto/{{id}}" method="post" id="form-assinar">
                                 <input type="hidden" name="Assinar_func" value="Assinar_func">
                                 <button onClick="assinarProduto()" type="submit" id="envioDeAssinatura"><strong>Assine aqui</strong></button>
                             </form>
-                            <p>Não consegue assinar? <br>Verifique se você já fez login</p>
                         </div>
+                    </div>
+                    <div id="informativo_assinatura">
+                        <p>Não consegue assinar? <br>Verifique se você já fez login</p>
                     </div>
                 </div>
             </section>
