@@ -13,20 +13,6 @@ import os
 import time
 from pathlib import Path
 
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask_migrate import Migrate
-from werkzeug.security import generate_password_hash, check_password_hash
-
-from db import db
-from user import user
-from produto import Produto
-from assinatura import Assinatura
-from criptografia import Hash
-
-import os
-import time
-from pathlib import Path
-
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -270,3 +256,4 @@ def logout():
 if __name__ == '__main__':
 
     app.run(debug=True , port=8000)
+
