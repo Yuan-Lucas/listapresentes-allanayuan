@@ -11,7 +11,8 @@ class user(UserMixin, db.Model):
 
     Telefone = db.Column(db.String(13), nullable=False)
     email = db.Column(db.String(250), unique=True)
-    senha = db.Column(db.String(25))
+    senha = db.Column(db.String(255))
 
     def __str__(self):
         return f"<usuario {self.id}>"
+
