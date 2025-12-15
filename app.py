@@ -153,12 +153,20 @@ def login():
 
         elif form_id == "loginAtv":
             # Verificação de login
-            nome_user = ''            
-            for nome in request.form.get('nomeSobrenome').split(' '):
-                if nome.strip() != "" and nome.strip() != " ":
-                    nome_user += nome.strip().lower() + " "
-            nome_user = nome_user.strip()
-            senha = Hash(request.form.get('senhaLogin'))        
+            nome_bruto = request.form.get('nomeSobrenome', '')
+            nome_user = " ".join(
+                n.strip().lower()
+                for n in nome_bruto.split()
+                if n.strip()
+            )
+
+            senha_bruta = request.form.get('senhaLogin')
+            
+            if not senha_bruta:
+                flash("Senha inválida.")
+                return render_template('login.html')
+                
+            senha = Hash(senha_bruta)        
 
             usuario = db.session.query(user).filter_by(
                 nome_completo=nome_user,
@@ -260,4 +268,5 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
+
     app.run(debug=True , port=8000)
