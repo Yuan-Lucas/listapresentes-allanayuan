@@ -22,5 +22,6 @@ tzdata
 Werkzeug 
 psycopg2-binary
 Flask-Migrate
+python-dotenv
 
 
