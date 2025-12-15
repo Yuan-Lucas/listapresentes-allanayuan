@@ -20,5 +20,7 @@ reportlab
 six 
 tzdata 
 Werkzeug 
+psycopg2-binary
+Flask-Migrate
 
 
