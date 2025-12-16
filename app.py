@@ -12,6 +12,7 @@ from criptografia import Hash
 import os
 import time
 from pathlib import Path
+import traceback
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -265,6 +266,7 @@ def logout():
 if __name__ == '__main__':
 
     app.run(debug=True , port=8000)
+
 
 
 
