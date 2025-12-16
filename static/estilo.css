@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     width: auto;
 }
@@ -76,9 +81,8 @@ button {
 
 /* ----------------------------------------------- */
 .SeparacaoSetor {
-    border: none;
     width: 50%;
-    margin: 30px;
+    margin: 30px auto;
 }
 /* ----------------------------------------------- */
 
@@ -115,7 +119,7 @@ h2 {
 
 @media screen and (max-width: 1350px) {
     h1 {
-        font-size: min(3rem,13vw)
+        font-size: min(3rem,10vw)
     }
     span {
         display: inline-block;
@@ -137,8 +141,6 @@ h2 {
 
 @media screen and (max-width: 1350px) {
     #Main_principal {
-        width: 95%;
-
         background-size: contain;
         background-repeat: repeat-y;
     }
@@ -222,7 +224,7 @@ h2 {
     }
 
     #Passo_Passo h2 {
-        font-size: min(3rem,13vw);
+        font-size: min(3rem,10vw);
     }
 }
 
@@ -376,7 +378,7 @@ h2 {
     }
     
     .produto h3 {
-        font-size: min(2rem, 40vw);
+        font-size: min(2rem, 5vw);
     }
     
     .produto .nav_produto {
@@ -386,7 +388,7 @@ h2 {
     }
     
     .produto .nav_produto .assinar {
-        font-size: min(2rem, 40vw);
+        font-size: min(2rem, 5vw);
     }
 }
 
@@ -523,8 +525,9 @@ h2 {
     }
     
     #Passo_Passo #img_passos_column {
-        display: flex;
-        width: 450%;
+        display: block;
+        width: 100%;
+        max-width: 100%;
         height: auto;
     }
     
