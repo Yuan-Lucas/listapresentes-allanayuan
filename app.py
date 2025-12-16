@@ -130,12 +130,20 @@ def login():
             try:
                 db.session.add(novo_usuario)
                 db.session.commit()
+                # Confirmação rápida — busca o usuário recém-criado
+                criado = user.query.filter_by(nome_completo=nome_user).first()
+                if criado:
+                    app.logger.info(f"Novo usuário criado: id={criado.id}, nome_completo={criado.nome_completo}")
                 flash("Cadastro realizado com sucesso! Faça login.", "success")
                 return redirect(url_for('login'))
-
+            
             except Exception as e:
+                # Remove qualquer sessão pendente
                 db.session.rollback()
-                flash("Erro ao cadastrar usuário.", "error")
+                # Log completo para o console/Render
+                app.logger.error("Erro ao cadastrar usuário: %s", traceback.format_exc())
+                # Mostra uma mensagem amigável no front
+                flash("Erro ao cadastrar usuário. Verifique os logs do servidor.", "error")
                 return redirect(url_for('login'))
 
         elif form_id == "loginAtv":
@@ -257,5 +265,6 @@ def logout():
 if __name__ == '__main__':
 
     app.run(debug=True , port=8000)
+
 
 
