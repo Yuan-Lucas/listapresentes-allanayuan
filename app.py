@@ -29,9 +29,10 @@ if DATABASE_URL.startswith("postgres://"):
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
 migrate = Migrate(app, db)
 
-db.init_app(app)
 
 lm = LoginManager(app)
 lm.init_app(app)
@@ -256,4 +257,5 @@ def logout():
 if __name__ == '__main__':
 
     app.run(debug=True , port=8000)
+
 
