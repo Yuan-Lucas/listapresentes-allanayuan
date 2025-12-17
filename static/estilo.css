@@ -19,7 +19,7 @@ header {
     width: auto;
     background-color: #00964e;
 
-    display: flexbox;
+    display: block;
     align-content: center;
 
     position: sticky;
@@ -392,39 +392,6 @@ h2 {
     }
 }
 
-@media screen and (max-width: 880px) {
-    #PrincipalProdutos #titulo_listaPresente h2 {
-        font-size: min(3rem, 10vw);
-    }
-
-    .produto {
-        width: 80vw;
-        height: auto;
-
-        margin: 10px;
-        margin-top: 1.5rem;
-
-        gap: 40px;
-    }
-    
-    .produto .ImagemProdutos {
-        width: 80%;
-        height: auto;
-    }
-    
-    .produto h3 {
-        font-size: min(2rem, 7vw);
-    }
-    
-    .produto .nav_produto {
-        width: 60vw;
-        height: auto;
-    }
-    
-    .produto .nav_produto .assinar {
-        font-size: min(2rem, 7vw);
-    }
-}
 
 .produto.indisponivel {
     background: #f0f0f0;
@@ -466,17 +433,17 @@ h2 {
     #navegação_header_sidebar {
         width: 15rem;
         height: auto;
-
+        
         display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-
+        
         background-color: #00964e;
         
         position: sticky;
         top: 6rem;
-        left: 7%;
+        left: 17%;
         
         padding: 1rem;
         border-radius: 10px;
@@ -491,7 +458,7 @@ h2 {
     .nav_principal {
         padding: 20px;
     }
-
+    
     .sep- {
         display: none;
     }
@@ -533,6 +500,44 @@ h2 {
     
     #Passo_Passo .Text_passos p {
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    #navegação_header_sidebar {
+        left: 15%;
+    }
+
+    #PrincipalProdutos #titulo_listaPresente h2 {
+        font-size: min(3rem, 10vw);
+    }
+
+    .produto {
+        width: 80vw;
+        height: auto;
+
+        margin: 10px;
+        margin-top: 1.5rem;
+
+        gap: 40px;
+    }
+    
+    .produto .ImagemProdutos {
+        width: 80%;
+        height: auto;
+    }
+    
+    .produto h3 {
+        font-size: min(2rem, 7vw);
+    }
+    
+    .produto .nav_produto {
+        width: 60vw;
+        height: auto;
+    }
+    
+    .produto .nav_produto .assinar {
+        font-size: min(2rem, 7vw);
     }
 }
 
