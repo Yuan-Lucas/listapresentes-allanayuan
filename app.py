@@ -224,7 +224,7 @@ def produto(id):
             ],
             "quantidade": "Sem limites"
         }
-        return render_template('produto.html', info_produto=dict_info, id=id)
+        return f"Desculpe pelo transtorno.\n Essa pagina ainda está em andamento \nCom prazo de finalização no dia 18/12/2025 às 01:00 AM"
     else:
         produto = Produto.query.get_or_404(id)
 
@@ -320,4 +320,5 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True , port=8000)
+
 
