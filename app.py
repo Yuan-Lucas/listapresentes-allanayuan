@@ -1,4 +1,4 @@
-from flask import render_template, Flask, request, session, redirect, url_for, abort, flash, jsonify    
+from flask import render_template, Flask, request, session, redirect, url_for, current_app, flash, jsonify    
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,22 +18,29 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+app.config['PIX_KEY'] = os.environ.get('PIX_KEY')   
+app.config['PIX_NAME'] = os.environ.get('PIX_NAME') 
+app.config['PIX_BANK'] = os.environ.get('PIX_BANK') 
+if not app.config['PIX_KEY']:
+        app.logger.warning("PIX_KEY não configurada. Verifique as Environment Variables no Render.")
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL não configurada")
-
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
 
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    "pool_pre_ping": True,
+    "pool_recycle": 300,
+}
 migrate = Migrate(app, db)
-
+db.init_app(app)
 
 lm = LoginManager(app)
 lm.init_app(app)
@@ -46,7 +53,6 @@ def user_loader(id):
 @app.route('/')
 def index():
     # Ordena colocando 'disponivel' primeiro, 'indisponivel' depois
-
     produtos = Produto.query.order_by(
         Produto.Status != "disponivel"
     ).all()
@@ -95,7 +101,10 @@ def lista():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+
         form_id = request.form.get('form_id')
+
         if form_id == "cadastroAtv":
             nome = request.form.get('nome')
             sobrenome = request.form.get('sobrenome')
@@ -103,7 +112,7 @@ def login():
             email = request.form.get('email')
             senha = request.form.get('senhaCadastro')
 
-            if not all([nome, sobrenome, telefone, senha]):
+            if not all([nome, sobrenome, telefone, email,  senha]):
                 flash("Preencha todos os campos do cadastro.", "error")
                 return redirect(url_for('login'))
 
@@ -114,6 +123,8 @@ def login():
             usuario_existente = user.query.filter_by(nome_completo=nome_user).first()
 
             if usuario_existente:
+                if is_ajax:
+                    return jsonify({"error": "Usuário já cadastrado. Tente fazer login."}), 409
                 flash("Usuário já cadastrado. Tente fazer login.", "error")
                 return redirect(url_for('login'))
 
@@ -131,10 +142,15 @@ def login():
             try:
                 db.session.add(novo_usuario)
                 db.session.commit()
+
+                if is_ajax:
+                    return jsonify({"success": True}), 200
+
                 # Confirmação rápida — busca o usuário recém-criado
                 criado = user.query.filter_by(nome_completo=nome_user).first()
                 if criado:
                     app.logger.info(f"Novo usuário criado: id={criado.id}, nome_completo={criado.nome_completo}")
+
                 flash("Cadastro realizado com sucesso! Faça login.", "success")
                 return redirect(url_for('login'))
             
@@ -148,43 +164,47 @@ def login():
                 return redirect(url_for('login'))
 
         elif form_id == "loginAtv":
-            # Verificação de login
-            nome_bruto = request.form.get('nomeSobrenome', '')
-            nome_user = " ".join(
-                n.strip().lower()
-                for n in nome_bruto.split()
-                if n.strip()
-            )
+            # obter valores com defaults seguros
+            nome_bruto = request.form.get('nomeSobrenome', '') or ''
+            senha_bruta = request.form.get('senhaLogin', '') or ''
 
-            senha_bruta = request.form.get('senhaLogin')
-            
-            if not senha_bruta:
-                flash("Senha inválida.")
-                return render_template('login.html')
-                
-            senha = Hash(senha_bruta)        
+            # normalizar nome: remove espaços extras e coloca em lowercase
+            nome_user = " ".join(part.strip().lower() for part in nome_bruto.split() if part.strip())
 
+            # validações básicas
+            if not nome_user or not senha_bruta:
+                flash("Preencha nome e senha.", "error")
+                return redirect(url_for('login'))
+
+            senha = Hash(senha_bruta)
+
+            # buscar usuário (nome_completo já armazenado em lowercase no cadastro)
             usuario = db.session.query(user).filter_by(
                 nome_completo=nome_user,
                 senha=senha
             ).first()
-            
+
             if not usuario:
-                flash("Login ou senha incorretos.")
-                return render_template('login.html')
-            
+                if is_ajax:
+                    return jsonify({"error": "Usuário ou senha incorretos."}), 401
+                app.logger.info("Falha de login para nome_completo=%s", nome_user)
+
+                flash("Login ou senha incorretos.", "error")
+
+                return redirect(url_for('login'))
+
+            # login bem-sucedido
             login_user(usuario)
 
-            # pega o parâmetro 'next' da URL
-            next_page = request.form.get('next') or request.args.get('next')
-            # segurança: só redireciona se for uma rota interna
-            if not next_page or next_page.startswith('/login'):
+            # pegar parâmetro 'next' e validar que é uma rota interna
+            next_page = request.form.get('next') or request.args.get('next') or ''
+            # segurança: só aceita caminhos relativos que começam com '/'
+            if not next_page or not next_page.startswith('/') or next_page.startswith('//'):
                 next_page = url_for('index')
-            if not next_page or not next_page.startswith('/'):
-                next_page = url_for('index')
+            if is_ajax:
+                return jsonify({"redirect": next_page}), 200
 
             return redirect(next_page)
-            # return redirect(url_for('index'))
 
     return render_template('login.html')
                
@@ -192,8 +212,21 @@ def login():
 @app.route('/produto/<int:id>', methods=['GET', 'POST'])
 @login_required
 def produto(id):
-    produto = Produto.query.get_or_404(id)
     dict_info = {}
+
+    if id == 0:
+        dict_info[0] = {
+            "nome": "Pix",
+            "cores": "transparente",
+            "img": "Imagens/produtos/Pix.png",
+            "list_info": [
+            ],
+            "quantidade": "Sem limites"
+        }
+        return render_template('produto.html', info_produto=dict_info, id=id)
+    else:
+        produto = Produto.query.get_or_404(id)
+
     informacoes = [
         produto.Caracteristicas, 
         produto.Funcao, 
@@ -211,50 +244,70 @@ def produto(id):
     }
 
     if request.method == 'POST' and request.form.get('Assinar_func'):
-        cores = request.form.getlist('cor_selecionada')
+        is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+        cores = [c.strip() for c in request.form.getlist('cor_selecionada') if c.strip()]
 
-        if len(cores) < 1:
-            flash("Selecione pelo menos 1 cor.")
-            return redirect(url_for("produto", id=id))
+        def erro(msg, status=400, redirect_to="produto"):
+            if is_ajax:
+                return jsonify({"error": msg}), status
+            flash(msg, "error")
+            return redirect(url_for(redirect_to, id=id) if redirect_to == "produto" else url_for(redirect_to))
 
+        # Validação 1
+        if not cores:
+            return erro("Selecione pelo menos 1 cor.")
+
+        # Validação 2
         if len(cores) > 2:
-            flash("Você só pode selecionar no máximo 2 cores.")
-            return redirect(url_for("produto", id=id))
-        
-        if produto.Quantidade <= 0:
-            return jsonify({"redirect": url_for("index")})
+            return erro("Você só pode selecionar no máximo 2 cores.")
 
+        # Validação 3
+        if produto.Quantidade <= 0:
+            return erro("Produto sem estoque.", redirect_to="index")
+
+        # Validação 4
         if len(cores) > produto.Quantidade:
-            flash(f"Você escolheu {len(cores)} cores, sendo que só tem {produto.Quantidade} produtos.")
-            return redirect(url_for("produto", id=id))
-        
+            return erro(
+                f"Você escolheu {len(cores)} cores, mas só existem {produto.Quantidade} disponíveis."
+            )
+
+        # Validação 5: cores válidas
+        if produto.coresDiferentes:
+            cores_disponiveis = [c.strip() for c in (produto.Cores_disponiveis or "").split(",") if c.strip()]
+            for cor in cores:
+                if cor not in cores_disponiveis:
+                    return erro(f"A cor '{cor}' não está mais disponível.")
+
         # Criar assinatura
         assinatura = Assinatura(
             produto_id=produto.id,
             user_id=current_user.id,
             cores=",".join(cores)
         )
-        
+
         produto.Quantidade -= len(cores)
+
         if produto.Quantidade == 0:
-            produto.Status = "Indisponível"
+            produto.Status = "indisponivel"
 
         if produto.coresDiferentes:
-            list_corDisponivel = [c.strip() for c in produto.Cores_disponiveis.split(',') if c.strip()]
+            produto.Cores_disponiveis = ",".join(
+                c for c in cores_disponiveis if c not in cores
+            )
 
-            for cor in cores:
-                cor = cor.strip()
-                try:
-                    list_corDisponivel.remove(cor)
-                except ValueError:
-                    pass
-            produto.Cores_disponiveis = ",".join(list_corDisponivel)
+        try:
+            db.session.add(assinatura)
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+            app.logger.error("Erro ao registrar assinatura:\n%s", traceback.format_exc())
+            return erro("Erro ao registrar assinatura. Tente novamente.", 500)
 
-        # Registrar assinatura e salvar alterações
-        db.session.add(assinatura)
-        db.session.commit()
-        
-        return jsonify({"redirect": url_for("index")})
+        if is_ajax:
+            return jsonify({"redirect": url_for("index")}), 200
+
+        flash("Assinatura realizada com sucesso!", "success")
+        return redirect(url_for("index"))
     
     return render_template('produto.html', info_produto=dict_info, id=id)
 
@@ -264,9 +317,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-
     app.run(debug=True , port=8000)
-
-
-
-
