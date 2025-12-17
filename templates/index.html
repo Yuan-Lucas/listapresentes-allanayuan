@@ -93,6 +93,15 @@
             
             
             <div id="Produtos">
+                <article class="produto" id="produto-0">
+                    <img src="{{url_for('static', filename='Imagens/produtos/Pix.png')}}" alt="Imagem do produto" class="ImagemProdutos" id="pix">
+                    <hr>
+                    <h3 class="NameProduct">Pix</h3> 
+                    <nav class="nav_produto">
+                        <a href="{{url_for('produto', id=0)}}" class="assinar" id="assinar_disponivel">Selecione aqui</a>
+                    </nav>
+                </article>
+
                 {% for key, list_info in info_produto.items() %}
                     <article class="produto {% if list_info[2] != 'Selecione aqui' %}indisponivel{% endif %}" id="produto-{{ key }}">
                         <img src="{{url_for('static', filename=list_info[0])}}" alt="Imagem do produto" class="ImagemProdutos" id="Liquidificador1">
