@@ -246,19 +246,20 @@ span {
     width: 50%;
 }
 
-#produtoInformacao .Assinar > img {
+#produtoInformacao .Assinar .assine button > img {
     width: 3vw;
 }
 
-#produtoInformacao .Assinar .assine {
+#produtoInformacao .Assinar .assine form > button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 10px;
 }
 
-#produtoInformacao .Assinar .assine button {
+#produtoInformacao .Assinar .assine button p {
     margin: 0.6rem;
-    font-size: 2vw;
+    font-size: 2rem;
     font-family: "Courier Prime";
     text-decoration: underline 4px;
     color: #000;
@@ -356,16 +357,23 @@ span {
         width: 60%;
     }
     
-    #produtoInformacao .Assinar img {
-        width: 7vw;
-    }
-    
-    #produtoInformacao .Assinar .assine button {
+    #produtoInformacao .Assinar .assine button p {
+        text-align: center;
         font-size: 2rem;
     }
-    
-    #produtoInformacao .Assinar .assine p {
+
+    #produtoInformacao .Assinar .assine button img {
+        width: 7vw;
+    }
+        
+    #produtoInformacao #informativo_assinatura p {
         font-size: clamp(1rem, 1rem + 1vw, 2rem);;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    #navegação_header_sidebar {
+        left: 15%;
     }
 }
 
@@ -449,12 +457,16 @@ span {
     
     #produtoInformacao .Assinar {
         flex-direction: column;
-
+        
         padding: 5px;
         width: 70%;
     }
     
-    #produtoInformacao .Assinar img {
+    #produtoInformacao .Assinar .assine form > button {
+        flex-direction: column;
+    }
+
+    #produtoInformacao .Assinar .assine button > img {
         width: 25%;
     }
 
