@@ -113,8 +113,7 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-    const checkboxes = document.querySelectorAll('.cor-checkbox');
+    const checkboxes = Array.from(document.querySelectorAll('.cor-checkbox'));
     const btnAssinar = document.getElementById('envioDeAssinatura');
     const formAssinar = document.getElementById('form-assinar');
     const produtoEl = document.getElementById('quantidade');
@@ -122,49 +121,85 @@
     const getQuantidadeDisponivel = () => {
         if (!produtoEl || !produtoEl.dataset.quantidade) return null;
         const q = parseInt(produtoEl.dataset.quantidade, 10);
-        return isNaN(q) ? null : q;
+        return Number.isNaN(q) ? null : q;
     };
 
-    // UX: limitar seleção a 2
+    // Se houver apenas 1 cor disponível, marcar automaticamente
+    if (checkboxes.length === 1) {
+        const only = checkboxes[0];
+        if (!only.checked) only.checked = true;
+    }
+
+    // UX: limitar seleção a 2 (se passar, desmarca a última seleção e avisa)
     checkboxes.forEach(ch => {
-        ch.addEventListener('change', () => {
-        const selecionadas = document.querySelectorAll('.cor-checkbox:checked').length;
-        if (selecionadas > 2) {
+        ch.addEventListener('change', (ev) => {
+        const selecionadas = document.querySelectorAll('.cor-checkbox:checked');
+        if (selecionadas.length > 2) {
+            // desmarca a caixa que acabou de ser marcada
+            ev.target.checked = false;
             alert("Você só pode selecionar no máximo 2 cores.");
         }
         });
     });
 
+    // Função que coleta valores das cores selecionadas
+    const getSelecionadas = () => {
+        return Array.from(document.querySelectorAll('.cor-checkbox:checked'))
+        .map(el => el.value.trim())
+        .filter(Boolean);
+    };
+
     btnAssinar.addEventListener('click', async (e) => {
         e.preventDefault();
 
-        const selecionadas = Array.from(
-        document.querySelectorAll('.cor-checkbox:checked')
-        ).map(el => el.value.trim()).filter(Boolean);
+        // Recoletar selecionadas (pode ter sido auto marcada)
+        const selecionadas = getSelecionadas();
 
-        if (selecionadas.length < 1) {
+        // Se houver apenas 1 cor disponível e nenhuma marcada (caso raro), marcar e recolher
+        if (checkboxes.length === 1 && selecionadas.length === 0) {
+        checkboxes[0].checked = true;
+        }
+
+        const selecionadasAtual = getSelecionadas();
+
+        if (selecionadasAtual.length < 1) {
         alert("Selecione pelo menos 1 cor.");
         return;
         }
 
-        if (selecionadas.length > 2) {
+        if (selecionadasAtual.length > 2) {
         alert("Você só pode selecionar no máximo 2 cores.");
         return;
         }
 
         const qtd = getQuantidadeDisponivel();
-        if (qtd !== null && selecionadas.length > qtd) {
-        alert(`Você escolheu ${selecionadas.length} cores, mas só existem ${qtd} produto disponível.`);
+        if (qtd !== null && selecionadasAtual.length > qtd) {
+        alert(`Você escolheu ${selecionadasAtual.length} cores, mas só existem ${qtd} produto disponível.`);
         return;
         }
 
+        // Criar FormData a partir do formAssinar e garantir que as cores sejam anexadas
         const formData = new FormData(formAssinar);
+
+        // Remover entradas antigas 'cor_selecionada' caso existam no form (evita duplicatas)
+        // Note: FormData não tem método direto para remover por nome em todos os browsers,
+        // então recriamos um novo FormData filtrando se necessário.
+        const fd = new FormData();
+        // copiar todos os campos do formAssinar exceto cor_selecionada
+        for (const pair of formData.entries()) {
+        const [name, value] = pair;
+        if (name === 'cor_selecionada') continue;
+        fd.append(name, value);
+        }
+        // anexar as cores selecionadas (mesmo que os inputs estejam em outro form)
+        selecionadasAtual.forEach(c => fd.append('cor_selecionada', c));
+
         btnAssinar.disabled = true;
 
         try {
         const resp = await fetch(formAssinar.action, {
             method: 'POST',
-            body: formData,
+            body: fd,
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
             credentials: 'same-origin'
         });
@@ -183,7 +218,6 @@
         } else {
             window.location.reload();
         }
-
         } catch (err) {
         console.error(err);
         alert("Erro de rede. Tente novamente.");
@@ -191,14 +225,12 @@
         btnAssinar.disabled = false;
         }
     });
-
     });
 
     function on_sidebar(event) {
-        event.stopPropagation();
-        const sidebar = document.getElementById('navegação_header_sidebar');
-        sidebar.classList.toggle('open');
-    }
+    event.stopPropagation();
+    const sidebar = document.getElementById('navegação_header_sidebar');
+    sidebar.classList.toggle('open');}
 </script>
 
 </html>
