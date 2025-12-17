@@ -262,7 +262,6 @@ form button {
     .nav_principal {
         padding: 20px;
     }
-
 }
 
 @media screen and (max-width: 1050px) {
@@ -273,11 +272,9 @@ form button {
     }
 }
 
-@media screen and (max-width: 450px) {
-    form button {
-        width: 85%;
-        height: 3.0rem;
-        font-size: min(3rem, 7vw)        
+@media screen and (max-width: 880px) {
+    #navegação_header_sidebar {
+        left: 15%;
     }
 }
 
@@ -285,21 +282,21 @@ form button {
     header {
         height: auto;
         padding: 10px;
-
+        
         justify-content: space-between;
     }
-
+    
     header #navegação_header #SidebarLogo button #logo {
         width: 50%;       
         height: auto; 
     }
-
+    
     #sidebar-icon {
         display: block;
         width: 30%;
         margin-right: 5%;
     }
-
+    
     header #navegação_header #SidebarLogo {
         width: 50px;
     }
@@ -313,19 +310,27 @@ form button {
         width: 50vw;
         height: auto;
     }
-
+    
     header #navegação_header_sidebar a {
         padding: 15px;
         font-size: 1rem;
     }
-
+    
     header #inscricao {
         width: 20%;
     }
-
+    
     header #inscricao img {
         width: 100%;
         height: auto;
         background-color: transparent;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    form button {
+        width: 85%;
+        height: 3.0rem;
+        font-size: min(3rem, 7vw)        
     }
 }
