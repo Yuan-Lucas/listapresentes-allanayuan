@@ -19,7 +19,9 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
+if not os.environ.get("SECRET_KEY"):
+    raise RuntimeError("SECRET_KEY não configurada")
+app.secret_key = os.environ["SECRET_KEY"]
 
 app.config['PIX_KEY'] = os.environ.get('PIX_KEY')   
 app.config['PIX_NAME'] = os.environ.get('PIX_NAME') 
@@ -62,7 +64,6 @@ def index():
     for p in produtos:
         status = "Selecione aqui" if p.Status == "disponivel" else p.Status
         dict_info[p.id] = [p.Img_link, p.Nome_abreviado, status]
-
 
     return render_template('index.html', info_produto = dict_info)
 
@@ -312,9 +313,11 @@ def produto(id):
     return render_template('produto.html', info_produto=dict_info, id=id)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True , port=8000)
+
