@@ -216,21 +216,17 @@ def produto(id):
     dict_info = {}
 
     if id == 0:
-        dict_info[0] = {
-            "nome": "Pix",
-            "cores": "transparente",
-            "img": "Imagens/produtos/Pix.png",
-            "list_info": [
-            ],
-            "quantidade": "Sem limites"
-        }
-        return """
-        <h1>Desculpe pelo transtorno.</h1>
-        <br>
-        <h1>Essa página ainda está em andamento</h1>
-        <br>
-        <h1>Com prazo de finalização no dia 18/12/2025 às 01:00 AM</h1>
-        """
+        chave = os.environ.get("PIX_KEY")
+        beneficiario = os.environ.get("PIX_NAME")
+        banco = os.environ.get("PIX_BANK")
+
+        return render_template(
+            'pix.html',
+            chave=chave,
+            beneficiario=beneficiario,
+            banco=banco,
+            id=id
+        )
     else:
         produto = Produto.query.get_or_404(id)
 
@@ -326,6 +322,7 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True , port=8000)
+
 
 
 
