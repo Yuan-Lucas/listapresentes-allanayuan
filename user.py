@@ -9,11 +9,9 @@ class user(UserMixin, db.Model):
     sobreNome = db.Column(db.String(75))
     nome_completo = db.Column(db.String(150), unique=True)
 
-    Telefone = db.Column(db.String(13), nullable=False)
+    Telefone = db.Column(db.String(30), nullable=True)
     email = db.Column(db.String(250), unique=False)
     senha = db.Column(db.String(255))
 
     def __str__(self):
         return f"<usuario {self.id}>"
-
-
