@@ -215,6 +215,8 @@ span {
 /* Cores */
 #Preto { background-color: #000; margin-left: 4px; }
 #Branco { background-color: #fff; }
+#PretoeBranco { background-color: linear-gradient(90deg, #000 50%, #fff 50%); }
+#Marrom { background-color: #654321; }
 #Cinza { background-color: #d3d3d3; }
 #Vermelho { background-color: #ff0000; }
 #Bege { background-color: #f5f5dc; }
