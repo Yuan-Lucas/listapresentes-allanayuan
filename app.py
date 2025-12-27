@@ -129,8 +129,11 @@ def login():
                 flash("Usuário já cadastrado. Tente fazer login.", "error")
                 return redirect(url_for('login'))
 
-            # Criar novo usuário
+            if telefone:
+                telefone = telefone.strip()
+                
             senha_hash = Hash(senha)
+            # Criar novo usuário
             novo_usuario = user(
                 nome=nome,
                 sobreNome=sobrenome,
@@ -322,6 +325,7 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True , port=8000)
+
 
 
 
