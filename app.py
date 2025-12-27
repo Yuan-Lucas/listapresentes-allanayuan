@@ -113,7 +113,7 @@ def login():
             email = request.form.get('email')
             senha = request.form.get('senhaCadastro')
 
-            if not all([nome, sobrenome, telefone, email,  senha]):
+            if not all([nome, sobrenome, senha]):
                 flash("Preencha todos os campos do cadastro.", "error")
                 return redirect(url_for('login'))
 
@@ -322,6 +322,7 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True , port=8000)
+
 
 
 
