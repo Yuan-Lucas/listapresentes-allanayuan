@@ -212,10 +212,9 @@ span {
     border: 2px solid #673ab7;
 }
 
-/* Cores */
 #Preto { background-color: #000; margin-left: 4px; }
 #Branco { background-color: #fff; }
-#PretoeBranco { background-color: linear-gradient(90deg, #000 50%, #fff 50%); }
+#PretoeBranco { background: linear-gradient(90deg, #000 50%, #fff 50%);}
 #Marrom { background-color: #654321; }
 #Cinza { background-color: #d3d3d3; }
 #Vermelho { background-color: #ff0000; }
@@ -232,7 +231,6 @@ span {
 #EstDiversa { background-image: url(Imagens/EstDiversa.jpg); }
 #EstRendada { background-image: url(Imagens/EstRendada.jpg); }
 #Dourado { background-color: #d6ca18; }
-
 
 #produtoInformacao .Assinar {
     width: 50%;
@@ -477,3 +475,4 @@ span {
         font-size: 1rem;
     }
 }
+
